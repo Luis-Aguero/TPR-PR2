@@ -1,0 +1,68 @@
+<div class="container fixed-size-div">
+    <div class="row-sm-12 m-1 p-0">
+        <h2>{{title}}</h2>
+        <form class="col-sm-12" (ngSubmit)="guardar()" [formGroup]="formulario">
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-6">
+                    <label class="small">ID</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="idCurso" >
+                    <div class="text-danger small" *ngIf="idCurso?.invalid">
+                        Dato requerido
+                    </div>id_Alumno
+                </div> 
+            </div>            
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-6">
+                    <label class="small">Nivel</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="nivel">
+                    <div class="text-danger small" *ngIf="nivel?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="small">Ciclo</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="ciclo">
+                    <div class="text-danger small" *ngIf="ciclo?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-6">
+                    <label class="small">Especializacion</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="especializacion">
+                    <div class="text-danger small" *ngIf="especializacion?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="small">Estado</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="estado_C">
+                    <div class="text-danger small" *ngIf="estado_C?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-6">
+                    <label class="small">Periodo</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="periodo">
+                    <div class="text-danger small" *ngIf="periodo?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="small">Arancel</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="arancel">
+                    <div class="text-danger small" *ngIf="arancel?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>            
+            <div class="row-sm-12 d-flex justify-content-between align-items-right">
+                <label></label>
+                <button class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+ 

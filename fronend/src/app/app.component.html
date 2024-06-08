@@ -1,0 +1,49 @@
+<div class="container-fluid m0 p0">
+  <div class="row">
+      <div class="col-md-2 m-0 p-0">
+          <div class="nav-side-menu">
+              <div class="brand">Escuelita</div>
+              <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+              <div class="menu-list">
+
+                  <ul id="menu-content" class="menu-content collapse out">
+                      <li (click)="menuClick('/inscripcion')">
+                          <a class="noseleccionar">
+                              <i class="fas fa-folder"></i> Inscripciones
+                          </a>
+                      </li>
+
+                      <li (click)="menuClick('/alumno')">
+                          <a class="noseleccionar">
+                              <i class="fas fa-address-card"></i> Alumnos
+                          </a>
+                      </li>
+
+                      <li (click)="menuClick('/aranceles')">
+                          <a class="noseleccionar">
+                              <i class="fas fa-folder"></i> Aranceles
+                          </a>
+                      </li>
+
+                      <li (click)="menuClick('/curso')">
+                          <a class="noseleccionar">
+                              <i class="fas fa-folder"></i> Cursos
+                          </a>
+                      </li>
+
+                      <li (click)="menuClick('/reportes')">
+                          <a class="noseleccionar">
+                              <i class="fas fa-print"></i> Reportes
+                          </a>
+                      </li>
+
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-10 m-0 p-2 dropdown">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>

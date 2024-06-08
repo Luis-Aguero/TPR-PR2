@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContratoTP" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="tableDataset" uuid="f13e6d36-5148-4ecc-bbe3-3035def80980">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="Institucion" class="java.lang.String"/>
+	<parameter name="Alumno" class="java.lang.String"/>
+	<parameter name="Fecha" class="java.lang.String"/>
+	<parameter name="FechaFin" class="java.lang.String"/>
+	<parameter name="Doc_alumno" class="java.lang.String"/>
+	<parameter name="Nivel" class="java.lang.String"/>
+	<parameter name="FechaIni" class="java.lang.String"/>
+	<parameter name="NroInscripcion" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<title>
+		<band height="62" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="54" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="380" y="10" width="85" height="20" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha Impresion:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="465" y="10" width="84" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="70" height="40" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<imageExpression><![CDATA["invoice_logo.png"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="465" y="30" width="84" height="20" uuid="3836ce65-eca3-4cad-a6de-b1818def0a2b"/>
+				<textFieldExpression><![CDATA[$P{NroInscripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="30" width="85" height="20" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Inscripcion Nro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="0" width="320" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contrato de Inscripcion]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="654" splitType="Stretch">
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="556" height="654" uuid="7db19646-71e5-4d5f-8501-046eaa0c00fe"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Entre:</b><br>"+$P{Institucion}+"<br> Representada por "+$P{Institucion}+", en adelante denominada 'La Institución'.<br><b>Y:</b><br> "+$P{Alumno}+"  <br>Con C.I. "+$P{Doc_alumno}+", en adelante denominado 'El Estudiante'.<br><br><b>1. Objeto del Contrato</b><br>La Institución se compromete a brindar los servicios educativos correspondientes al "+$P{Nivel}+" durante el período "+$P{FechaIni}+" al "+$P{FechaFin}+".<br><br><b>2. Duración del Contrato </b><br>Este contrato tiene una duración de un año a partir de la fecha de inicio.<br><br><b>3. Obligaciones de La Institución</b><br>- Proveer una educación de calidad conforme al plan de estudios aprobado.<br>- Proporcionar materiales educativos y recursos necesarios para el desarrollo del curso.<br>- Facilitar la participación del estudiante en actividades extracurriculares.<br><br><b>4. Obligaciones del Estudiante</b><br>- Cumplir con el reglamento interno de La Institución.<br>- Asistir puntualmente a las clases y actividades programadas.<br>- Realizar los pagos correspondientes en los plazos establecidos.<br><br><b><b>5. Costos y Pagos</b></b><br>El costo total de la matrícula y mensualidades es de gs. Los pagos deberán efectuarse según el siguiente calendario:  <br>- Matrícula: [fecha y monto]<br>- Mensualidades: [detalle de fechas y montos]<br><br><b>6. Políticas de Reembolso</b><br>En caso de retiro del estudiante, La Institución se compromete a reembolsar [porcentaje] del monto pagado, siempre que la solicitud de retiro se realice antes del [fecha límite].<br><br><b>7. Resolución del Contrato</b><br>El contrato podrá resolverse por incumplimiento de las obligaciones por cualquiera de las partes, previa notificación escrita con 30 de anticipación.<br><br><b>8. Jurisdicción y Ley Aplicable</b><br>Este contrato se rige por las leyes de Paraguay, y cualquier disputa será resuelta en los tribunales.<br>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
