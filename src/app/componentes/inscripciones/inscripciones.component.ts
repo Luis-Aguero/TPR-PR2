@@ -56,8 +56,22 @@ export class InscripcionesComponent {
         this.datosTabla.splice(indice, 1);
       }
     );
-
-
   }
+
+  imprimirContrato(arg: Inscripcion, id: number): void {
+    const ventana = this.modalService.open(InscripcionComponent, { ariaLabelledBy: 'modal-basic-title', size: 'lg' });
+    ventana.componentInstance.title = 'Formulario de Inscripcion';
+    ventana.componentInstance.arg = arg
+    ventana.result.then((result) => {
+      if (id == -1) {
+        this.datosTabla.push(result)
+      } else {
+        this.datosTabla[id] = result
+      }
+
+    }).catch((reason) => {
+      console.log(`Motivo de cierre del modal: ${reason}`);
+    });
+  }  
 
 }

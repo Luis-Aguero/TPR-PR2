@@ -15,7 +15,7 @@ export class CursoService {
   };
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }  
@@ -27,12 +27,14 @@ export class CursoService {
   }
 
   post(argPost : Curso): Observable<Curso>{
+    console.log(argPost);
     return this.http.post<Curso>(this.apiUrl, argPost, this.httpOptions).pipe(
       catchError(this.handleError<any>('addItem'))
     );
   }
 
   put(argPut : Curso): Observable<Curso>{
+    console.log(argPut);
     return this.http.put<Curso>(this.apiUrl, argPut, this.httpOptions).pipe(
       catchError(this.handleError<any>('addItem'))
     );

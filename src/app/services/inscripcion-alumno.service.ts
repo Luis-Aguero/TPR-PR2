@@ -42,4 +42,8 @@ export class InscripcionAlumnoService {
       catchError(this.handleError<any>('addItem'))
     );
   }
+
+  ContratoPdf(argIdInscripcion : number): Observable<Blob>{
+    return this.http.get(this.apiUrl+"/contrato/"+argIdInscripcion,{responseType:'blob'});
+  }
 }

@@ -30,6 +30,7 @@ export class CursosComponent {
       estado_C:'',
       periodo:'',
       arancel:0,
+      turno:'Mañana'
     }, -1);
   }
 

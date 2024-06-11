@@ -6,4 +6,5 @@ export interface Curso{
     estado_C:string;
     periodo:string;
     arancel:number;
+    turno:string; 
 }

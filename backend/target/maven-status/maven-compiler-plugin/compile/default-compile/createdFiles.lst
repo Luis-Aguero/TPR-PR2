@@ -6,8 +6,8 @@ pr2/tp/backen/Services/InscripcionService.class
 pr2/tp/backen/Controladores/InscripcionController.class
 pr2/tp/backen/Services/Ireport.class
 pr2/tp/backen/Controladores/AlumnoController.class
-pr2/tp/backen/Modelo/Contactos.class
 pr2/tp/backen/Services/ContactosService.class
+pr2/tp/backen/Modelo/Contactos.class
 pr2/tp/backen/Services/AlumnoService.class
 pr2/tp/backen/Modelo/Alumno.class
 pr2/tp/backen/Modelo/Inscripcion.class

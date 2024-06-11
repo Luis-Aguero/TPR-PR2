@@ -13,11 +13,11 @@ public class Curso {
     private Long idCurso;
     private String nivel;
     private String ciclo;
-    //private Date Fech_Nac;
     private String especializacion;
     private String estado_C;
     private String periodo;
     private int arancel;
+    private int turno;
 
     public Long getIdCurso() {
         return idCurso;
@@ -74,5 +74,14 @@ public class Curso {
     public void setArancel(int arancel) {
         this.arancel = arancel;
     }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+    
    
 }

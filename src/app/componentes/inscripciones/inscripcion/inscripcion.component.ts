@@ -5,31 +5,43 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { InscripcionAlumnoService } from '../../../services/inscripcion-alumno.service';
 import { CommonModule } from '@angular/common';
 import { ClienteAlumnoService } from '../../../services/cliente-alumno.service';
-import { Alumno } from '../../../models/Alumno';
+import { ItemComboBox } from '../../combo-box/Item';
+import { ComboBoxComponent } from '../../combo-box/combo-box.component';
+import { CursoService } from '../../../services/curso.service';
 
 @Component({
   selector: 'app-inscripcion',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, ComboBoxComponent],
   templateUrl: './inscripcion.component.html',
   styleUrl: './inscripcion.component.css'
 })
-export class InscripcionComponent implements OnInit{
+export class InscripcionComponent implements OnInit {
   @Input() title: string = '';
   @Input() arg?: Inscripcion;
   formulario: FormGroup;
-  options: Alumno[]= [];
-  selectedValue: string = '';
+  comboAlumnos: ItemComboBox[] = [];
+  comboCursos: ItemComboBox[] = [];
+  comboEstado: ItemComboBox[] = [{id:"1", descripcion:"Inscripto"}, {id:"2", descripcion:"Cancelado"}];
 
   constructor(public activeModal: NgbActiveModal,
     public servicio: InscripcionAlumnoService,
-    public servicioAlumno: ClienteAlumnoService
+    public servicioAlumno: ClienteAlumnoService,
+    public servicioCurso: CursoService
   ) {
     this.formulario = new FormGroup({});
-    servicioAlumno.getAlumnos().subscribe((datos)=>{this.options = datos})
-  }  
-  
+    this.servicioAlumno.getAlumnos().subscribe((datos) => {
+      this.comboAlumnos = datos.map(alumno => ({ id: alumno.id_Alumno, descripcion: alumno.nomb_A })); 
+    })
+    this.servicioCurso.get().subscribe((datos) => {
+      this.comboCursos = datos.map(alumno => ({ id: alumno.idCurso, descripcion: alumno.ciclo+" "+alumno.nivel+" "+alumno.turno})); 
+    })
+  }
+
   ngOnInit() {
+
+
+
     this.formulario = new FormGroup({
       idInscripcion: new FormControl(this.arg?.idInscripcion, [Validators.required]),
       ano_Letivo: new FormControl(this.arg?.ano_Letivo, [Validators.required]),
@@ -41,7 +53,6 @@ export class InscripcionComponent implements OnInit{
       idCurso: new FormControl(this.arg?.id_Alumno, [Validators.required])
     });
     this.formulario.controls['idInscripcion'].disable();
-    
   }
 
 
@@ -72,16 +83,18 @@ export class InscripcionComponent implements OnInit{
       console.log('Formulario no válido');
     }
   }
-    
-  onSelectionChange(value: string) {
-    this.selectedValue = value;
-    console.log('Valor seleccionado:', this.selectedValue);
+
+  seleccionaCurso(arg:any){
+    console.log(arg);
   }
-  get idInscripcion(){return this.formulario?.get('idInscripcion'); }
-  get ano_Letivo(){return this.formulario?.get('ano_Letivo'); }
-  get estado_Inscripcion(){return this.formulario?.get('estado_Inscripcion'); }
-  get fech_Inscripcion(){return this.formulario?.get('fech_Inscripcion'); }
-  get monto_Matricula(){return this.formulario?.get('monto_Matricula'); }
-  get descuento(){return this.formulario?.get('descuento'); }
-  get id_Alumno(){return this.formulario?.get('id_Alumno'); }
+
+  get idInscripcion() { return this.formulario?.get('idInscripcion'); }
+  get ano_Letivo() { return this.formulario?.get('ano_Letivo'); }
+  get estado_Inscripcion() { return this.formulario?.get('estado_Inscripcion'); }
+  get fech_Inscripcion() { return this.formulario?.get('fech_Inscripcion'); }
+  get monto_Matricula() { return this.formulario?.get('monto_Matricula'); }
+  get descuento() { return this.formulario?.get('descuento'); }
+  get id_Alumno() { return this.formulario?.get('id_Alumno'); }
+  get idCurso() { return this.formulario?.get('idCurso'); }
+  
 }

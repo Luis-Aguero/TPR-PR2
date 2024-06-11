@@ -1,7 +1,7 @@
 <div class="card m-2 fixed-size">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h1>Inscripciones</h1>
-        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="Agregar alumno"
+        <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="Agregar alumno"
             (click)="nuevoRegistro()">
             Nuevo
         </button>
@@ -27,6 +27,9 @@
                     <td class="w-0">
                         <div class="btn-group btn-group-toggle d-flex justify-content-center">
                             <button type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip"
+                                title="Imprimir Contrato" (click)="imprimirContrato(itemDato, $index)"><i
+                                    class="fas fa-print"></i></button>                            
+                            <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="tooltip"
                                 title="Modifica alumno" (click)="modificarRegistro(itemDato, $index)"><i
                                     class="far fa-edit"></i></button>
                             <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
