@@ -34,10 +34,7 @@ export class AlumnoComponent implements OnInit {
       apellido_A: new FormControl(this.arg?.apellido_A, [Validators.required]),
       fech_Nac: new FormControl(this.arg?.fech_Nac, [Validators.required]),
       direc_A: new FormControl(this.arg?.direc_A, [Validators.required]),
-      estado_A: new FormControl(this.arg?.estado_A),
-      nivel_A: new FormControl(this.arg?.nivel_A, [Validators.required]),
-      ciclo_A: new FormControl(this.arg?.ciclo_A, [Validators.required]),
-      especializacion_A: new FormControl(this.arg?.especializacion_A, [Validators.required])
+      estado_A: new FormControl(this.arg?.estado_A)
     });
     this.formulario.controls['id_Alumno'].disable();
   }
@@ -83,8 +80,5 @@ export class AlumnoComponent implements OnInit {
   get apellido_A() { return this.formulario?.get('apellido_A') }
   get fech_Nac() { return this.formulario?.get('fech_Nac') }
   get direc_A() { return this.formulario?.get('direc_A') }
-  get nivel_A() { return this.formulario?.get('nivel_A') }
-  get ciclo_A() { return this.formulario?.get('ciclo_A') }
-  get especializacion_A() { return this.formulario?.get('especializacion_A') }
 
 }
