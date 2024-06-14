@@ -10,6 +10,10 @@ import { Alumno } from '../models/Alumno';
 })
 export class ClienteAlumnoService {
   private apiUrl = 'http://127.0.0.1:3000/alumno';
+
+  constructor(private http: HttpClient) { } 
+
+  
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -20,7 +24,7 @@ export class ClienteAlumnoService {
     };
   }  
 
-  constructor(private http: HttpClient) { } 
+  
 
   getAlumnos(): Observable<Alumno[]>{
     return this.http.get<Alumno[]>(this.apiUrl);
