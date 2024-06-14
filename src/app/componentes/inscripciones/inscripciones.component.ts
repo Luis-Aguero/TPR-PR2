@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Inscripcion } from '../../models/Inscripcion';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
 import { InscripcionAlumnoService } from '../../services/inscripcion-alumno.service';
+import { ReportesComponent } from '../reportes/reportes.component';
  
 @Component({
   selector: 'app-inscripciones',
@@ -22,16 +23,18 @@ export class InscripcionesComponent {
 
   nuevoRegistro(): void {
     this.modificarRegistro({
-      idInscripcion: 0,
-      ano_Letivo: 0,
-      estado_Inscripcion: '',
-      fech_Inscripcion: "2022-01-14",
-      monto_Matricula: 0,
+      id_inscripcion: 0,
+      anoLectivo: 0,
+      estado_Inscripcion: 'Inscripto',
+      fecha_Inscripcion: "2022-01-14",
+      monto_Matricula: 500000,
       descuento: 0,
-      id_Alumno:0,
-      idCurso:0
+      alumno:{id_Alumno: 0,	nomb_A: "",	apellido_A: "",	fech_Nac: "",	direc_A: "",	estado_A: "",	cedula: ""},
+      curso:{idCurso:0, ciclo:"", especializacion:"", estado:"", arancel:0, turno:0, grado:"",  nivel:""}
     }, -1);
   }
+
+  
 
   modificarRegistro(arg: Inscripcion, id: number): void {
     const ventana = this.modalService.open(InscripcionComponent, { ariaLabelledBy: 'modal-basic-title', size: 'lg' });
@@ -39,7 +42,10 @@ export class InscripcionesComponent {
     ventana.componentInstance.arg = arg
     ventana.result.then((result) => {
       if (id == -1) {
-        this.datosTabla.push(result)
+      //  this.datosTabla.push(result)
+      this.servicio.get().pipe().subscribe((data) => {
+        this.datosTabla = data;
+      })
       } else {
         this.datosTabla[id] = result
       }
@@ -59,19 +65,9 @@ export class InscripcionesComponent {
   }
 
   imprimirContrato(arg: Inscripcion, id: number): void {
-    const ventana = this.modalService.open(InscripcionComponent, { ariaLabelledBy: 'modal-basic-title', size: 'lg' });
-    ventana.componentInstance.title = 'Formulario de Inscripcion';
+    const ventana = this.modalService.open(ReportesComponent, { ariaLabelledBy: 'modal-basic-title', size: 'lg' });
+    ventana.componentInstance.title = 'Impresion de Contrato';
     ventana.componentInstance.arg = arg
-    ventana.result.then((result) => {
-      if (id == -1) {
-        this.datosTabla.push(result)
-      } else {
-        this.datosTabla[id] = result
-      }
-
-    }).catch((reason) => {
-      console.log(`Motivo de cierre del modal: ${reason}`);
-    });
   }  
 
 }

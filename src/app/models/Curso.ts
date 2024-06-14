@@ -1,10 +1,10 @@
 export interface Curso{
-    idCurso:number;
-    nivel:string;
+    idCurso:number;    
     ciclo:string;
     especializacion:string;
-    estado_C:string;
-    periodo:string;
+    estado:string; 
     arancel:number;
-    turno:string; 
+    turno:number; 
+    grado:string
+    nivel:string;
 }

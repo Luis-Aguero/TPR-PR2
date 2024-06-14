@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ClienteAlumnoService } from '../../../services/cliente-alumno.service';
 import { ItemComboBox } from '../../combo-box/Item';
 import { ComboBoxComponent } from '../../combo-box/combo-box.component';
+import { formatDate } from '../../../services/fecha';
  
 @Component({
   selector: 'app-alumno',
@@ -18,7 +19,7 @@ import { ComboBoxComponent } from '../../combo-box/combo-box.component';
 export class AlumnoComponent implements OnInit {
   @Input() title: string = '';
   @Input() arg?: Alumno;
-
+  errorMessage: string | null = null;
   formulario: FormGroup;
 
   public contactos: Contacto[] = [];
@@ -35,7 +36,7 @@ export class AlumnoComponent implements OnInit {
       id_Alumno: new FormControl(this.arg?.id_Alumno, [Validators.required]),
       nomb_A: new FormControl(this.arg?.nomb_A, [Validators.required]),
       apellido_A: new FormControl(this.arg?.apellido_A, [Validators.required]),
-      fech_Nac: new FormControl(this.arg?.fech_Nac, [Validators.required]),
+      fech_Nac: new FormControl(formatDate(this.arg?.fech_Nac||''), [Validators.required]),
       direc_A: new FormControl(this.arg?.direc_A, [Validators.required]),
       estado_A: new FormControl(this.arg?.estado_A),
       cedula: new FormControl(this.arg?.cedula)
@@ -60,7 +61,9 @@ export class AlumnoComponent implements OnInit {
             this.activeModal.close(data)
           },
           (error) => {
-            console.error(error);
+            if (error.statusCode >= 400) {
+              this.errorMessage = error.message;
+            }
           }
         );
       } else {
@@ -69,7 +72,9 @@ export class AlumnoComponent implements OnInit {
             this.activeModal.close(data)
           },
           (error) => {
-            console.error(error);
+            if (error.statusCode >= 400) {
+              this.errorMessage = error.message;
+            }
           }
         );
       }

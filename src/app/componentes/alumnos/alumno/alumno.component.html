@@ -1,16 +1,12 @@
 <div class="container fixed-size-div">
     <div class="row-sm-12 m-1 p-0">
         <h2>{{title}}</h2>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-12" role="alert">
+            {{ errorMessage }}
+        </div>          
         <form class="col-sm-12" (ngSubmit)="guardar()" [formGroup]="formulario">
             <div class="input-group row-sm-12">
-                <div class="form-group col-sm-6">
-                    <div class="form-check justify-content-between">
-                        <input class="form-check-input" type="checkbox" formControlName="" checked>
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Estado
-                        </label>
-                    </div>
-                </div>
+              
             </div>
 
             <div class="input-group row-sm-12">
