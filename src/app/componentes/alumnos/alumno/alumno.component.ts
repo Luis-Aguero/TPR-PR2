@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ClienteAlumnoService } from '../../../services/cliente-alumno.service';
 import { ItemComboBox } from '../../combo-box/Item';
 import { ComboBoxComponent } from '../../combo-box/combo-box.component';
-
+ 
 @Component({
   selector: 'app-alumno',
   standalone: true,
