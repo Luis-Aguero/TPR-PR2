@@ -26,11 +26,11 @@ export class CursosComponent {
       idCurso:0,
       nivel:'',
       ciclo:'',
-      especializacion:'-',
-      estado:'Activo', 
+      especializacion:'',
+      estado_C:'',
+      periodo:'',
       arancel:0,
-      turno:3,
-      grado:""
+      turno:'Mañana'
     }, -1);
   }
 

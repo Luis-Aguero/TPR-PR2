@@ -5,25 +5,21 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ClienteAlumnoService } from '../../../services/cliente-alumno.service';
-import { ItemComboBox } from '../../combo-box/Item';
-import { ComboBoxComponent } from '../../combo-box/combo-box.component';
-import { formatDate } from '../../../services/fecha';
- 
+
 @Component({
   selector: 'app-alumno',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, ComboBoxComponent],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './alumno.component.html',
   styleUrl: './alumno.component.css'
 })
 export class AlumnoComponent implements OnInit {
   @Input() title: string = '';
   @Input() arg?: Alumno;
-  errorMessage: string | null = null;
+
   formulario: FormGroup;
 
   public contactos: Contacto[] = [];
-  public comboestado: ItemComboBox[] = [{id:"Activo", descripcion:"Activo"},{id:"Desactivado", descripcion:"Desactivado"}];
 
   constructor(public activeModal: NgbActiveModal,
     public servicio: ClienteAlumnoService
@@ -36,10 +32,12 @@ export class AlumnoComponent implements OnInit {
       id_Alumno: new FormControl(this.arg?.id_Alumno, [Validators.required]),
       nomb_A: new FormControl(this.arg?.nomb_A, [Validators.required]),
       apellido_A: new FormControl(this.arg?.apellido_A, [Validators.required]),
-      fech_Nac: new FormControl(formatDate(this.arg?.fech_Nac||''), [Validators.required]),
+      fech_Nac: new FormControl(this.arg?.fech_Nac, [Validators.required]),
       direc_A: new FormControl(this.arg?.direc_A, [Validators.required]),
       estado_A: new FormControl(this.arg?.estado_A),
-      cedula: new FormControl(this.arg?.cedula)
+      nivel_A: new FormControl(this.arg?.nivel_A, [Validators.required]),
+      ciclo_A: new FormControl(this.arg?.ciclo_A, [Validators.required]),
+      especializacion_A: new FormControl(this.arg?.especializacion_A, [Validators.required])
     });
     this.formulario.controls['id_Alumno'].disable();
   }
@@ -61,9 +59,7 @@ export class AlumnoComponent implements OnInit {
             this.activeModal.close(data)
           },
           (error) => {
-            if (error.statusCode >= 400) {
-              this.errorMessage = error.message;
-            }
+            console.error(error);
           }
         );
       } else {
@@ -72,9 +68,7 @@ export class AlumnoComponent implements OnInit {
             this.activeModal.close(data)
           },
           (error) => {
-            if (error.statusCode >= 400) {
-              this.errorMessage = error.message;
-            }
+            console.error(error);
           }
         );
       }
@@ -89,6 +83,8 @@ export class AlumnoComponent implements OnInit {
   get apellido_A() { return this.formulario?.get('apellido_A') }
   get fech_Nac() { return this.formulario?.get('fech_Nac') }
   get direc_A() { return this.formulario?.get('direc_A') }
-  get cedula() { return this.formulario?.get('cedula') }
-  get estado_A() { return this.formulario?.get('estado_A') }
+  get nivel_A() { return this.formulario?.get('nivel_A') }
+  get ciclo_A() { return this.formulario?.get('ciclo_A') }
+  get especializacion_A() { return this.formulario?.get('especializacion_A') }
+
 }

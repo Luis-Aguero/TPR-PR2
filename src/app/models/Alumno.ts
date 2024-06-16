@@ -5,6 +5,8 @@ export interface Alumno {
 	fech_Nac: string;
 	direc_A: string;
 	estado_A: string;
-	cedula: string;
+	nivel_A: string;
+	ciclo_A: string;
+	especializacion_A: string;
 }
 

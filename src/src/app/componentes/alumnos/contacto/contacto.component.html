@@ -1,0 +1,55 @@
+<!-- item.component.html -->
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()" (input)="onSubmit()">
+
+    <div class="input-group row-sm-12">
+        <div class="form-group col-sm-3">
+            <label class="small">Nombre</label>
+            <input type="text" class="form-control form-control-sm" formControlName="nomb_Contacto">
+            <div class="text-danger small" *ngIf="nomb_Contacto?.invalid">
+                Dato requerido
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label class="small">Apellido</label>
+            <input type="text" class="form-control form-control-sm" formControlName="apellido_Contacto">
+            <div class="text-danger small" *ngIf="apellido_Contacto?.invalid">
+                Dato requerido
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label class="small">Tipo Relacion</label>
+            <app-combo-box formControlName="tipoRelacion" [options]="comboeTipoRelacion"></app-combo-box>
+            <div class="text-danger small" *ngIf="tipoRelacion?.invalid">
+                Dato requerido
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" formControlName="emergencia" (change)="onSubmit()">
+                <label class="form-check-label" for="emergencia">
+                    Contacto de Emergencia?
+                </label>
+            </div> 
+            <div class="text-danger small" *ngIf="emergencia?.invalid">
+                Dato requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group row-sm-12">
+        <div class="form-group col-sm-6">
+            <label class="small">Direccion</label>
+            <input type="text" class="form-control form-control-sm" formControlName="direccion">
+            <div class="text-danger small" *ngIf="direccion?.invalid">
+                Dato requerido
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label class="small">Telefono</label>
+            <input type="text" class="form-control form-control-sm" formControlName="telef_contacto">
+            <div class="text-danger small" *ngIf="telef_contacto?.invalid">
+                Dato requerido
+            </div>
+        </div>
+    </div>
+</form>

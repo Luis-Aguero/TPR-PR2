@@ -1,7 +1,8 @@
 <div class="card m-2 fixed-size">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h1>Inscripciones</h1>
-        <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="Agregar alumno" (click)="nuevoRegistro()">
+        <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="Agregar alumno"
+            (click)="nuevoRegistro()">
             Nuevo
         </button>
     </div>
@@ -18,16 +19,16 @@
             </thead>
             <tbody>
                 @for (itemDato of datosTabla; track $index) {
-                <tr data-toggle="tooltip" title="{{ itemDato.id_inscripcion }}">
-                    <td class="w-40">{{ itemDato.alumno.nomb_A }}</td>
-                    <td class="w-40">{{ itemDato.alumno.apellido_A }}</td>
-                    <td class="w-40">{{ itemDato.alumno.direc_A }}</td>
+                <tr data-toggle="tooltip" title="{{ itemDato.idInscripcion }}">
+                    <td class="w-40">{{ itemDato.ano_Letivo }}</td>
+                    <td class="w-40">{{ itemDato.id_Alumno }}</td>
+                    <td class="w-40">{{ itemDato.descuento }}</td>
                     <td class="w-40">{{ itemDato.estado_Inscripcion }}</td>
                     <td class="w-0">
                         <div class="btn-group btn-group-toggle d-flex justify-content-center">
                             <button type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip"
                                 title="Imprimir Contrato" (click)="imprimirContrato(itemDato, $index)"><i
-                                    class="fas fa-print"></i></button>
+                                    class="fas fa-print"></i></button>                            
                             <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="tooltip"
                                 title="Modifica alumno" (click)="modificarRegistro(itemDato, $index)"><i
                                     class="far fa-edit"></i></button>

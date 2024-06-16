@@ -1,0 +1,18 @@
+.noseleccionar {
+    user-select: none;
+}
+
+
+.card{
+    background-color: #84a98c;
+    user-select: none;
+}
+
+thead{
+    background-color: #52796f;
+    text-align: center;
+}
+
+tbody{
+    background-color: #cad2c5;
+}

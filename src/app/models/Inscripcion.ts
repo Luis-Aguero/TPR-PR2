@@ -1,15 +1,10 @@
-import { Alumno } from "./Alumno";
-import { Curso } from "./Curso";
-
 export interface Inscripcion {
-    id_inscripcion: number;
-    curso:Curso;
-    alumno: Alumno;
-    anoLectivo: number;
+    idInscripcion: number;
+    ano_Letivo: number;
     estado_Inscripcion: string;
-    fecha_Inscripcion: string;
+    fech_Inscripcion: string;
     monto_Matricula: number;
     descuento: number;
-    
-    
+    id_Alumno: number;
+    idCurso:number;
 }

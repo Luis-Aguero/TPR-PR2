@@ -27,8 +27,10 @@ export class AlumnosComponent {
 			apellido_A: "",
 			fech_Nac: "2022-01-14",
 			direc_A: "",
-			estado_A: "Activo",
-			cedula:""
+			nivel_A: "",
+			ciclo_A: "",
+			especializacion_A: "",
+			estado_A: "Activo"
 		}, -1);
 	}
 

@@ -1,0 +1,70 @@
+<div class="container fixed-size-div">
+    <div class="row-sm-12 m-1 p-0">
+        <div class="row-sm-12 d-flex justify-content-between align-items-right">
+            <h2>{{title}} Nro:{{arg?.idinscripcion}} </h2> 
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-12" role="alert">
+            {{ errorMessage }}
+        </div>              
+
+
+        <form class="col-sm-12" (ngSubmit)="guardar()" [formGroup]="formulario">
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-12">
+                    <label class="small">Alumno</label>
+                    <app-combo-box formControlName="alumno" [options]="comboAlumnos"></app-combo-box>
+                    <div class="text-danger small" *ngIf="alumno?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-6">
+                    <label class="small">Fecha</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="fecha_Inscripcion">
+                    <div class="text-danger small" *ngIf="fecha_Inscripcion?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="small">Curso</label>
+                    <app-combo-box formControlName="curso" [options]="comboCursos" (selectionChange)="seleccionaCurso($event)"></app-combo-box>
+                    <div class="text-danger small" *ngIf="curso?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-6">
+                    <label class="small">Estado</label>
+                    <app-combo-box formControlName="estado_Inscripcion" [options]="comboEstado"></app-combo-box>
+                    <div class="text-danger small" *ngIf="estado_Inscripcion?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>
+            <div class="input-group row-sm-12">
+                <div class="form-group col-sm-6">
+                    <label class="small">Importe Matricula</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="monto_Matricula">
+                    <div class="text-danger small" *ngIf="monto_Matricula?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="small">Importe Descuento</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="descuento">
+                    <div class="text-danger small" *ngIf="descuento?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>
+            <div class="row-sm-12 d-flex justify-content-between align-items-right">
+                <label></label>
+                <button class="btn btn-primary">Guardar</button>
+            </div>            
+        </form>
+    </div>
+</div>

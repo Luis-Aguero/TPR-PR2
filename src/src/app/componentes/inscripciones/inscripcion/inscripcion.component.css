@@ -1,0 +1,24 @@
+.container {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: #cad2c5
+}
+
+.fixed-size-table {
+    max-height: 600px;
+    max-width: 100%;
+    table-layout: fixed;
+    overflow: auto;
+}
+
+.fixed-size-table th,
+.fixed-size-table td {
+    overflow: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fixed-size-div {
+    max-width: 98%;
+    max-height: 600px;
+    overflow: auto;
+}
