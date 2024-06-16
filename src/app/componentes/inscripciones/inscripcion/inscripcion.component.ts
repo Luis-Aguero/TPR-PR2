@@ -8,6 +8,7 @@ import { ClienteAlumnoService } from '../../../services/cliente-alumno.service';
 import { ItemComboBox } from '../../combo-box/Item';
 import { ComboBoxComponent } from '../../combo-box/combo-box.component';
 import { CursoService } from '../../../services/curso.service';
+import { formatDate } from '../../../services/fecha';
 
 @Component({
   selector: 'app-inscripcion',
@@ -19,10 +20,11 @@ import { CursoService } from '../../../services/curso.service';
 export class InscripcionComponent implements OnInit {
   @Input() title: string = '';
   @Input() arg?: Inscripcion;
+  errorMessage: string | null = null;
   formulario: FormGroup;
   comboAlumnos: ItemComboBox[] = [];
   comboCursos: ItemComboBox[] = [];
-  comboEstado: ItemComboBox[] = [{id:"1", descripcion:"Inscripto"}, {id:"2", descripcion:"Cancelado"}];
+  comboEstado: ItemComboBox[] = [{id:"Inscripto", descripcion:"Inscripto"}, {id:"Cancelado", descripcion:"Cancelado"}];
 
   constructor(public activeModal: NgbActiveModal,
     public servicio: InscripcionAlumnoService,
@@ -43,38 +45,47 @@ export class InscripcionComponent implements OnInit {
 
 
     this.formulario = new FormGroup({
-      idInscripcion: new FormControl(this.arg?.idInscripcion, [Validators.required]),
-      ano_Letivo: new FormControl(this.arg?.ano_Letivo, [Validators.required]),
       estado_Inscripcion: new FormControl(this.arg?.estado_Inscripcion, [Validators.required]),
-      fech_Inscripcion: new FormControl(this.arg?.fech_Inscripcion, [Validators.required]),
+      fecha_Inscripcion: new FormControl(formatDate(this.arg?.fecha_Inscripcion||''), [Validators.required]),
       monto_Matricula: new FormControl(this.arg?.monto_Matricula),
       descuento: new FormControl(this.arg?.descuento, [Validators.required]),
-      id_Alumno: new FormControl(this.arg?.id_Alumno, [Validators.required]),
-      idCurso: new FormControl(this.arg?.id_Alumno, [Validators.required])
+      alumno: new FormControl(this.arg?.alumno.id_Alumno, [Validators.required]),
+      curso: new FormControl(this.arg?.curso.idCurso, [Validators.required])
     });
-    this.formulario.controls['idInscripcion'].disable();
   }
 
 
   guardar(): void {
     if (this.formulario?.valid) {
-      this.formulario.controls['idInscripcion'].enable();
-      if ("idCuidInscripcionrso" in this.formulario.value) {
-        this.servicio.put({ ... this.formulario.value }).subscribe(
+      if (this.arg?.idinscripcion != 0) {
+
+        let inscrip = { "idinscripcion": this.arg?.idinscripcion,...this.formulario.value };
+        inscrip['alumno']= {"id_Alumno": inscrip['alumno']};
+        inscrip['curso']= {"idCurso": inscrip['curso']};
+
+        this.servicio.put(inscrip).subscribe(
           (data) => {
             this.activeModal.close(data)
           },
           (error) => {
-            console.error(error);
+            if (error.statusCode === 400) {
+              this.errorMessage = error.message;
+            }
           }
         );
       } else {
-        this.servicio.post({ ... this.formulario.value }).subscribe(
+        let inscrip = { ...this.formulario.value };
+        inscrip['alumno']= {"id_Alumno": inscrip['alumno']};
+        inscrip['curso']= {"idCurso": inscrip['curso']};
+        console.log(inscrip);
+        this.servicio.post(inscrip).subscribe(
           (data) => {
             this.activeModal.close(data)
           },
           (error) => {
-            console.error(error);
+            if (error.statusCode >= 400) {
+              this.errorMessage = error.message;
+            }
           }
         );
       }
@@ -85,16 +96,15 @@ export class InscripcionComponent implements OnInit {
   }
 
   seleccionaCurso(arg:any){
-    console.log(arg);
+    const curso = this.servicioCurso.getId(arg);
+    this.formulario.controls['monto_Matricula'].setValue("500000")
   }
 
-  get idInscripcion() { return this.formulario?.get('idInscripcion'); }
-  get ano_Letivo() { return this.formulario?.get('ano_Letivo'); }
   get estado_Inscripcion() { return this.formulario?.get('estado_Inscripcion'); }
-  get fech_Inscripcion() { return this.formulario?.get('fech_Inscripcion'); }
+  get fecha_Inscripcion() { return this.formulario?.get('fecha_Inscripcion'); }
   get monto_Matricula() { return this.formulario?.get('monto_Matricula'); }
   get descuento() { return this.formulario?.get('descuento'); }
-  get id_Alumno() { return this.formulario?.get('id_Alumno'); }
-  get idCurso() { return this.formulario?.get('idCurso'); }
+  get alumno() { return this.formulario?.get('alumno'); }
+  get curso() { return this.formulario?.get('curso'); }
   
 }

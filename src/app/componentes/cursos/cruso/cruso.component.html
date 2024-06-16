@@ -1,18 +1,21 @@
 <div class="container fixed-size-div">
     <div class="row-sm-12 m-1 p-0">
         <h2>{{title}}</h2>
-        <form class="col-sm-12" (ngSubmit)="guardar()" [formGroup]="formulario">           
+        <div *ngIf="errorMessage" class="alert alert-danger mt-12" role="alert">
+            {{ errorMessage }}
+        </div>        
+        <form class="col-sm-12" (ngSubmit)="guardar()" [formGroup]="formulario">
             <div class="input-group row-sm-12">
                 <div class="form-group col-sm-6">
                     <label class="small">Nivel</label>
-                    <input type="text" class="form-control form-control-sm" formControlName="nivel">
+                    <app-combo-box formControlName="nivel" [options]="comboNivel"></app-combo-box>
                     <div class="text-danger small" *ngIf="nivel?.invalid">
                         Dato requerido
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="small">Ciclo</label>
-                    <input type="text" class="form-control form-control-sm" formControlName="ciclo">
+                    <app-combo-box formControlName="ciclo" [options]="comboCiclo"></app-combo-box>
                     <div class="text-danger small" *ngIf="ciclo?.invalid">
                         Dato requerido
                     </div>
@@ -21,28 +24,44 @@
             <div class="input-group row-sm-12">
                 <div class="form-group col-sm-6">
                     <label class="small">Especializacion</label>
-                    <input type="text" class="form-control form-control-sm" formControlName="especializacion">
+                    <app-combo-box formControlName="especializacion" [options]="comboEspecializacion"></app-combo-box>
                     <div class="text-danger small" *ngIf="especializacion?.invalid">
                         Dato requerido
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <label class="small">Estado</label>
-                    
-                    <app-combo-box formControlName="estado_C" [options]="comboEstado"></app-combo-box>
-                    <div class="text-danger small" *ngIf="estado_C?.invalid">
+                    <label class="small">Grado</label>
+                    <app-combo-box formControlName="grado" [options]="comboGrado"></app-combo-box>
+                    <div class="text-danger small" *ngIf="grado?.invalid">
                         Dato requerido
                     </div>
                 </div>
             </div>
             <div class="input-group row-sm-12">
+
                 <div class="form-group col-sm-6">
-                    <label class="small">Periodo</label>
-                    <input type="text" class="form-control form-control-sm" formControlName="periodo">
-                    <div class="text-danger small" *ngIf="periodo?.invalid">
+                    <label class="small">Estado</label>
+                    <app-combo-box formControlName="estado" [options]="comboEstado"></app-combo-box>
+                    <div class="text-danger small" *ngIf="estado?.invalid">
                         Dato requerido
                     </div>
                 </div>
+
+                <div class="form-group col-sm-6">
+                    <label class="small">Turno</label>
+                    <app-combo-box formControlName="turno" [options]="comboTurnos"
+                        (selectionChange)="seleccionaTurno($event)"></app-combo-box>
+                    <div class="text-danger small" *ngIf="turno?.invalid">
+                        Dato requerido
+                    </div>
+                </div>
+            </div>
+            <div class="input-group row-sm-12">
+
+                <div class="form-group col-sm-6">
+                    <label class="small"></label>
+                </div>
+
                 <div class="form-group col-sm-6">
                     <label class="small">Arancel</label>
                     <input type="text" class="form-control form-control-sm" formControlName="arancel">
@@ -50,21 +69,16 @@
                         Dato requerido
                     </div>
                 </div>
-            </div>    
+            </div>
+
+
             <div class="input-group row-sm-12">
-           
-                <div class="form-group col-sm-6">
-                    <label class="small">Turno</label> 
-                    <app-combo-box formControlName="turno" [options]="comboTurnos"></app-combo-box>
-                    <div class="text-danger small" *ngIf="turno?.invalid">
-                        Dato requerido
-                    </div>
-                </div>
-            </div>                        
+                <label for=""></label>
+            </div>
             <div class="row-sm-12 d-flex justify-content-between align-items-right">
                 <label></label>
                 <button class="btn btn-primary">Guardar</button>
             </div>
+
         </form>
     </div>
- 

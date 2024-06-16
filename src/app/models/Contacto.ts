@@ -1,8 +1,11 @@
 export interface Contacto {
+	index:number;
 	id_contacto: number;
-	id_alumno: number;
-	nombre_contacto: string;
-	info_contacto: string;
-	tipo_info: number;
-	encargado: number;
+	nomb_Contacto: string;
+	apellido_Contacto: string;
+	tipoRelacion: string;
+	telef_contacto: string;
+	direccion: string; 
+	emergencia: boolean;
 }
+

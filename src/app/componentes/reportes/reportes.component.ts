@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { InscripcionAlumnoService } from '../../services/inscripcion-alumno.service';
 import { CommonModule } from '@angular/common';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Inscripcion } from '../../models/Inscripcion';
 
 @Component({
   selector: 'app-reportes',
@@ -11,22 +13,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './reportes.component.css'
 })
 export class ReportesComponent implements OnInit {
-  pdfUrl: SafeResourceUrl | null = null;
-  constructor(private sanitezer: DomSanitizer, private servicio: InscripcionAlumnoService){}
+  @Input() title: string = ''; 
+
+  @Input() pdfUrl: SafeResourceUrl | null = null;
+  constructor(public activeModal: NgbActiveModal){
+
+   this.loadPdf();
+  }
 
   ngOnInit(): void{
     this.loadPdf();
   }
 
-  loadPdf(): void {
-    this.servicio.ContratoPdf(1).subscribe(
-      (pdf) => {
-        const url = URL.createObjectURL(pdf);
-        this.pdfUrl = this.sanitezer.bypassSecurityTrustResourceUrl(url);
-      },
-      (error) => {
-        console.log("Errror", error);
-      }
-    );
+  public loadPdf(): void { 
+
   }
 }
